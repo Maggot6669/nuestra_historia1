@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velas y Carta 💌</title>
+    <style>
+      body {
+        background: radial-gradient(circle at center, #1a1a1a, #000);
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+      }
+
+      h2 {
+        color: #ffb6c1;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      /* 🌹 Velitas */
+      .velitas-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin: 40px 0;
+      }
+
+      .vela {
+        width: 25px;
+        height: 60px;
+        background: pink;
+        border-radius: 10px;
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.3s;
+        box-shadow: 0 0 10px rgba(255, 182, 193, 0.4);
+      }
+
+      .vela:hover {
+        transform: scale(1.1);
+      }
+
+      .vela::before {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 15px;
+        background: radial-gradient(circle, red 40%, transparent 70%);
+        border-radius: 50%;
+        opacity: 0;
+        animation: flameOff 1s forwards;
+      }
+
+      .vela.encendida::before {
+        opacity: 1;
+        animation: flameOn 0.4s infinite alternate;
+      }
+
+      @keyframes flameOn {
+        from {
+          transform: translateX(-50%) scale(1);
+          filter: brightness(1);
+        }
+        to {
+          transform: translateX(-50%) scale(1.3);
+          filter: brightness(1.6);
+        }
+      }
+
+      @keyframes flameOff {
+        to {
+          opacity: 0;
+        }
+      }
+
+      /* ✨ Animación del mensaje */
+      .mensaje-amor {
+        font-size: 1.2rem;
+        margin-top: 15px;
+        color: #ffb6c1;
+        font-style: italic;
+        min-height: 40px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .mensaje-amor.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 💌 Carta */
+      .sobre {
+        position: relative;
+        display: inline-block;
+        width: 250px;
+        height: 160px;
+        background: #ffb6c1;
+        border-radius: 8px;
+        cursor: pointer;
+        perspective: 1000px;
+        box-shadow: 0 0 15px rgba(255, 182, 193, 0.7);
+        overflow: hidden;
+      }
+
+      .tapa {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: #ff99b9;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        transform-origin: top;
+        transition: transform 0.6s ease;
+        z-index: 2;
+      }
+
+      .carta {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        width: 80%;
+        background: white;
+        color: #3a003a;
+        padding: 15px;
+        border-radius: 8px;
+        opacity: 0;
+        z-index: 1;
+        transition: all 0.8s ease;
+        pointer-events: none;
+      }
+
+      .sobre.abierto {
+        overflow: visible;
+      }
+
+      .sobre.abierto .tapa {
+        transform: rotateX(180deg);
+      }
+
+      .sobre.abierto .carta {
+        opacity: 1;
+        transform: translate(-50%, -40%) scale(1);
+        pointer-events: all;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="brand">
+        <div class="logo">♥</div>
+        <div class="title">
+          <h1>Nuestra historia</h1>
+          <p class="small">
+            Otra pagina web, hecha por mi, para la niña que me hace feliz🌸.
+          </p>
+        </div>
+      </div>
+      <div style="flex: 1"></div>
+      <nav class="controls">
+        <button class="btn" id="play-toggle">Reproducir música</button>
+      </nav>
+    </header>
+
+    <style>
+      header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 40px;
+        background: rgba(255, 192, 203, 0.08); /* rosado translúcido */
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 182, 193, 0.2);
+        box-shadow: 0 0 10px rgba(255, 182, 193, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      /* 💞 Sección izquierda con logo y título */
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo {
+        font-size: 2rem;
+        color: #ff6fae;
+        animation: heartbeat 1.5s infinite;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 0.9;
+        }
+      }
+
+      .title h1 {
+        font-size: 1.6rem;
+        margin: 0;
+        color: #fff;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+      }
+
+      .title .small {
+        margin: 2px 0 0;
+        font-size: 0.85rem;
+        color: #ffcce0;
+        font-style: italic;
+      }
+
+      /* 🎵 Botón de música */
+      .controls .btn {
+        background: linear-gradient(135deg, #ff6fae, #ffb6c1);
+        border: none;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 20px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px rgba(255, 182, 193, 0.4);
+      }
+
+      .controls .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+        background: linear-gradient(135deg, #ffb6c1, #ff6fae);
+      }
+    </style>
+
+    <h2>🕯️ velas de amor 💞</h2>
+
+    <div class="velitas-container">
+      <div class="vela" data-msg="Eres todo lo bueno de mi vida 🌹"></div>
+      <div
+        class="vela"
+        data-msg="Todos los dias mi amor por ti incrementa 💫"
+      ></div>
+      <div class="vela" data-msg="No dejare de amarte jamas 💋"></div>
+      <div
+        class="vela"
+        data-msg="Ninguna persona en el mundo podra ocupar el lugar que tu tienes en mi corazón 💞"
+      ></div>
+      <div
+        class="vela"
+        data-msg="Quiero estar contigo por siempre y para siempre 💍"
+      ></div>
+    </div>
+
+    <p class="mensaje-amor" id="mensaje-amor"></p>
+
+    <h1>💌</h1>
+
+    <div class="sobre" id="sobre">
+      <div class="tapa"></div>
+      <div class="carta">
+        <p>
+          Mi linda niña, al igual que estas velitas, tu iluminas mis dias,
+          iluminas mi vida entera, para mi, eres como un rayo de luz en la
+          oscuridad, como un lucero en una noche oscura, eres la unica luz que
+          quiero seguir, la unica luz que quiero en mi vida. 💖
+        </p>
+      </div>
+    </div>
+
+    <audio id="bg-audio" src="audios/mw.mp3" preload="auto" loop></audio>
+
+    <footer>
+      <p>Hecho con todo mi amor, para ti.</p>
+      <p class="firma">Att. Tu Gusanito 💞</p>
+    </footer>
+    <style>
+      footer {
+        width: 100%;
+        text-align: center;
+        padding: 25px 10px;
+        margin-top: 50px;
+        background: rgba(255, 192, 203, 0.08);
+        border-top: 1px solid rgba(255, 182, 193, 0.2);
+        box-shadow: 0 -4px 10px rgba(255, 182, 193, 0.1);
+        backdrop-filter: blur(10px);
+        color: #ffcce0;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        position: relative;
+      }
+
+      footer .firma {
+        margin-top: 5px;
+        font-style: italic;
+        color: #ff9ccf;
+        animation: corazonBrillo 2s infinite alternate;
+      }
+
+      /* 💞 Animación sutil en el texto */
+      @keyframes corazonBrillo {
+        from {
+          text-shadow: 0 0 5px rgba(255, 182, 193, 0.3);
+          transform: scale(1);
+        }
+        to {
+          text-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
+          transform: scale(1.03);
+        }
+      }
+    </style>
+    <script>
+      // ✨ Velitas del amor
+      const velas = document.querySelectorAll(".vela");
+      const mensaje = document.getElementById("mensaje-amor");
+
+      velas.forEach((vela) => {
+        vela.addEventListener("click", () => {
+          vela.classList.toggle("encendida");
+          if (vela.classList.contains("encendida")) {
+            mensaje.textContent = vela.dataset.msg;
+            mensaje.classList.remove("visible"); // reinicia la animación
+            void mensaje.offsetWidth; // truco para reiniciar CSS animation
+            mensaje.classList.add("visible");
+          } else {
+            mensaje.classList.remove("visible");
+            setTimeout(() => {
+              mensaje.textContent = "";
+            }, 300);
+          }
+        });
+      });
+
+      // 💌 Animación del sobre
+      const sobre = document.getElementById("sobre");
+      sobre.addEventListener("click", () => {
+        sobre.classList.toggle("abierto");
+      });
+
+      // Música autoplay
+      const audio = document.getElementById("bg-audio");
+      const playBtn = document.getElementById("play-toggle");
+      playBtn.addEventListener("click", async () => {
+        if (audio.paused) {
+          await audio.play();
+          playBtn.textContent = "Pausar música";
+        } else {
+          audio.pause();
+          playBtn.textContent = "Reproducir música";
+        }
+      });
+      window.addEventListener("load", () => {
+        setTimeout(() => audio.play().catch(() => {}), 600);
+        loadStory();
+        renderNotes();
+      });
+    </script>
+  </body>
+</html>

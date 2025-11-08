@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nuestra historia ♥</title>
+    <!-- Tipografías: cursiva romántica + moderna -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #0b0b0d;
+        --panel: #111114;
+        --pink-1: #ffd1e8;
+        --pink-2: #ff6fa3;
+        --accent: #b30000;
+        --glass: rgba(255, 255, 255, 0.04);
+        --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(
+            1200px 600px at 10% 10%,
+            rgba(255, 111, 147, 0.06),
+            transparent 10%
+          ),
+          linear-gradient(180deg, #060607 0%, #0b0b0d 100%);
+        color: #eee;
+        font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.4;
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        backdrop-filter: blur(6px);
+        background: linear-gradient(
+          180deg,
+          rgba(11, 11, 13, 0.7),
+          rgba(11, 11, 13, 0.45)
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--pink-2), var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: #111;
+        font-size: 22px;
+        box-shadow: var(--card-shadow);
+        transform: rotate(-8deg);
+      }
+      .title h1 {
+        margin: 0;
+        font-family: "Great Vibes", cursive;
+        font-size: 22px;
+        color: var(--pink-1);
+      }
+      .title p {
+        margin: 0;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .container {
+        max-width: 980px;
+        margin: 28px auto;
+        padding: 0 20px;
+      }
+      .hero {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          transparent
+        );
+        border-radius: 16px;
+        padding: 28px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        box-shadow: var(--card-shadow);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+
+      .hero-right {
+        width: 220px;
+        text-align: center;
+      }
+      .hero h2 {
+        font-family: "Great Vibes", cursive;
+        font-size: 42px;
+        margin: 0;
+        color: var(--pink-1);
+      }
+      .hero p {
+        margin-top: 8px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .heart {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, var(--pink-2), var(--pink-1));
+        box-shadow: 0 6px 18px rgba(255, 111, 147, 0.12);
+        position: relative;
+        transform: rotate(-20deg);
+        cursor: pointer;
+        animation: heartbeat 1.2s infinite;
+        transition: box-shadow 0.3s ease;
+      }
+      .heart:hover {
+        box-shadow: 0 0 25px var(--pink-2), 0 0 35px var(--accent);
+      }
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1) rotate(-20deg);
+        }
+        50% {
+          transform: scale(1.1) rotate(-20deg);
+        }
+      }
+
+      section.card {
+        margin-top: 20px;
+        background: var(--panel);
+        padding: 20px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.02);
+        box-shadow: var(--card-shadow);
+      }
+      h3.section-title {
+        margin: 0 0 12px 0;
+        font-size: 20px;
+        color: var(--pink-1);
+        font-family: "Great Vibes", cursive;
+      }
+      .story-text {
+        color: #ffd1e8; /* texto rosado */
+        white-space: pre-wrap;
+        background: rgba(
+          50,
+          0,
+          30,
+          0.5
+        ); /* fondo semitransparente más visible */
+        padding: 18px;
+        border-radius: 10px;
+        border: 1px dashed rgba(255, 255, 255, 0.2);
+      }
+
+      .notes-area {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 18px;
+      }
+      .notes-list {
+        max-height: 360px;
+        overflow: auto;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .note {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          transparent
+        );
+        padding: 12px;
+        border-radius: 10px;
+        border-left: 4px solid var(--pink-2);
+      }
+      .note small {
+        display: block;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 8px;
+      }
+
+      form.note-form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .note-form textarea {
+        min-height: 100px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 10px;
+        border-radius: 8px;
+        color: inherit;
+      }
+      .note-form input[type="text"] {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 10px;
+        border-radius: 8px;
+        color: inherit;
+      }
+      .btn {
+        display: inline-block;
+        background: linear-gradient(90deg, var(--pink-2), var(--accent));
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: none;
+        color: #111;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn.ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: inherit;
+      }
+
+      .controls {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .small {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      footer {
+        margin: 34px 0 80px 0;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .momentos-gallery {
+        display: none; /* oculto por defecto */
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 16px;
+        justify-content: center;
+      }
+      .momentos-gallery img {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+      .momentos-gallery img:hover {
+        transform: scale(1.1);
+      }
+
+      /* Botón corazón reemplazando el div animado */
+      .heart-btn {
+        font-size: 36px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: var(--pink-2);
+        transition: transform 0.2s;
+      }
+      .heart-btn:hover {
+        transform: scale(1.2);
+      }
+
+      @media (max-width: 880px) {
+        .notes-area {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          flex-direction: column;
+        }
+        .hero-right {
+          width: 100%;
+        }
+      }
+
+      .notes-display {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 111, 147, 0.05),
+          transparent
+        );
+        border: 1px solid rgba(255, 111, 147, 0.2);
+        padding: 16px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        color: #ffd1e8;
+        font-family: "Montserrat", sans-serif;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+      .notes-display strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--pink-1);
+        font-family: "Great Vibes", cursive;
+        font-size: 18px;
+      }
+      .notes-display p {
+        margin: 0;
+        line-height: 1.5;
+        color: rgba(255, 209, 232, 0.9);
+      }
+
+      .momentos-gallery {
+        display: none; /* sigue oculto hasta que se haga click */
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 16px;
+        justify-content: center;
+      }
+
+      .momentos-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .momentos-item img {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .momentos-item img:hover {
+        transform: scale(1.1);
+      }
+
+      .momentos-desc {
+        margin-top: 6px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+      }
+
+      #momentos-toggle {
+        all: unset; /* elimina estilos predeterminados del botón */
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, var(--pink-2), var(--pink-1));
+        box-shadow: 0 6px 18px rgba(255, 111, 147, 0.12);
+        transform: rotate(-20deg);
+        cursor: pointer;
+        animation: heartbeat 1.2s infinite;
+        text-align: center;
+        line-height: 36px;
+        color: #fff;
+        font-size: 20px;
+      }
+      #momentos-toggle:hover {
+        box-shadow: 0 0 25px var(--pink-2), 0 0 35px var(--accent);
+      }
+
+      /* Animación para que las imágenes aparezcan */
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .momentos-gallery.show img {
+        animation: fadeInUp 0.5s ease forwards;
+        animation-delay: var(
+          --delay,
+          0s
+        ); /* Usaremos delay dinámico para cada imagen */
+      }
+
+      /* Tú y Yo */
+      .you-me-container {
+        margin-top: 30px;
+        text-align: center;
+        background: var(--panel);
+        padding: 25px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        box-shadow: var(--card-shadow);
+      }
+
+      .you-me-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        margin-top: 15px;
+      }
+
+      .person img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .person img:hover {
+        transform: scale(1.1);
+      }
+
+      .and-text {
+        font-size: 28px;
+        font-weight: bold;
+        color: var(--pink-1);
+        font-family: "Great Vibes", cursive;
+      }
+
+      .label {
+        margin-top: 8px;
+        font-size: 16px;
+        color: #ffd6e0;
+      }
+
+      .always-text {
+        margin-top: 15px;
+        font-size: 30px;
+        color: #ffb3c6;
+        font-family: "Great Vibes", cursive;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <div class="logo">♥</div>
+        <div class="title">
+          <h1>Nuestra historia</h1>
+          <p class="small">
+            Una página hecha por mi, con todo el cariño del mundo, solo para ti.
+          </p>
+        </div>
+      </div>
+      <div style="flex: 1"></div>
+      <nav class="controls">
+        <button class="btn" id="play-toggle">Reproducir música</button>
+      </nav>
+    </header>
+
+    <img src="img/jj.png" class="decoracion izquierda" />
+    <img src="img/a1.png" class="decoracion izquierda decor1" />
+    <img src="img/rosa.png" class="decoracion derecha decor2" />
+    <img src="img/a2.png" class="decoracion derecha decor3" />
+
+    <style>
+      .decoracion {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100px;
+        opacity: 0.85;
+        z-index: 10;
+        animation: flotar 4s ease-in-out infinite; /* 👈 animación aplicada */
+      }
+
+      /* Lado izquierdo */
+      .izquierda {
+        left: 15px;
+      }
+
+      /* Lado derecho */
+      .derecha {
+        right: 15px;
+      }
+
+      /* Animación de flotación */
+      @keyframes flotar {
+        0% {
+          transform: translateY(-50%) translateY(0);
+        }
+        50% {
+          transform: translateY(-50%) translateY(-15px); /* sube */
+        }
+        100% {
+          transform: translateY(-50%) translateY(0); /* baja */
+        }
+      }
+
+      .decor1 {
+        top: 81%;
+        left: 0px;
+      }
+      .decor2 {
+        top: 79%;
+        right: 30px;
+      }
+      .decor3 {
+        bottom: 70%;
+        right: 30px;
+      }
+      .decor4 {
+        bottom: 30%;
+        right: 80px;
+      }
+    </style>
+
+    <main class="container">
+      <div class="hero">
+        <div class="hero-left">
+          <h2>Para ti, una prueba mas del imenso amor que te tengo.</h2>
+          <p class="small">
+            Un sitio web para almacenar nuestros recuerdos y experiencias
+            juntos.
+          </p>
+          <div
+            style="
+              margin-top: 16px;
+              display: flex;
+              gap: 10px;
+              align-items: center;
+            "
+          >
+            <span class="heart"></span>
+            <small class="small"
+              >Consejo: abrí esta página en modo pantalla completa para mayor
+              impacto(f1).</small
+            >
+          </div>
+        </div>
+        <div class="hero-right">
+          <div
+            style="
+              padding: 12px;
+              border-radius: 12px;
+              background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.02),
+                transparent
+              );
+              border: 1px solid rgba(255, 255, 255, 0.03);
+            "
+          >
+            <strong class="small">Dia que nos conocimos:</strong>
+            <div style="margin-top: 8px">1/10/25 💖</div>
+          </div>
+
+          <div
+            style="
+              padding: 12px;
+              border-radius: 12px;
+              background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.02),
+                transparent
+              );
+              border: 1px solid rgba(255, 255, 255, 0.03);
+              text-align: center;
+            "
+          >
+            <strong class="small">Días juntos:</strong>
+            <div
+              id="dias-juntos"
+              style="margin-top: 8px; font-size: 18px; color: #ffd6e0"
+            >
+              Calculando... 💕
+            </div>
+          </div>
+
+          <script>
+            const fechaInicio = new Date("2025-10-01");
+
+            function calcularDiasJuntos() {
+              const hoy = new Date();
+              const diferencia = hoy - fechaInicio;
+              const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+              document.getElementById(
+                "dias-juntos"
+              ).textContent = `${dias} días 💖`;
+            }
+
+            calcularDiasJuntos();
+          </script>
+        </div>
+      </div>
+
+      <section id="story" class="card">
+        <h3 class="section-title">Nuestra historia</h3>
+        <div class="story-text" id="story-text">
+          💖Carta #1<br />
+          Desde el primer dia que hablamos, supe que tu eras una persona
+          especial, esta pagina web te la hago con todo el cariño que puedo
+          darte, espero que te guste, la idea es que aqui vallamos recopilando
+          momentos especiales, y que sea como una capsula del tiempo dkajdka, no
+          se, pero espero que te guste.<3
+        </div>
+        <br />
+        <div class="story-text" id="story-text">
+          💖 Carta #2<br />
+          Cada versión de esta página lleva mucho amor y esfuerzo. Cada una
+          representa el empeño que pongo para demostrarte, cada vez más, el gran
+          amor y aprecio que te tengo. Estoy muy enamorado de ti: de tus ojos,
+          de tu boca, de tus labios, de tu pelo, de tu manera de tratarme, de tu
+          forma de amarme… Estoy enamorado de todo de ti, incluso de cosas que
+          no puedo mencionar aquí alsjsajd. Te amo, mi amor. Jamás dejaré de
+          hacerlo. JAMÁS. Te amo.<3
+        </div>
+        <br>
+        <div class="story-text" id="story-text">
+          💖 Carta #3<br />
+          Mi amor, siento que todo esto es muy poco, en comparacion de lo que mereces,
+          apesar de eso, quiero que sepas que cada linea de codigo, cada variable,
+          cada comando, cada propiedad llevan una gran parte de todo mi amor hacia ti,
+          Te amo cariño, y hare todo lo posible para demostrartemi inmenso amor todos 
+          los dias. TE AMOOOOOO.<3
+        </div>
+
+        <div
+          style="
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+          "
+        >
+          <div style="flex: 1"></div>
+        </div>
+      </section>
+
+      <section id="notes" class="card">
+        <h3 class="section-title">Notas</h3>
+        <div class="notes-display" id="notes-display">
+          <p>Aquí podés dejar un mensaje especial que siempre veras.</p>
+        </div>
+        <div class="notes-area">
+          <div>
+            <div class="notes-list" id="notes-list"></div>
+          </div>
+          <aside>
+            <form class="note-form" id="note-form">
+              <label class="small">Título</label>
+              <input
+                type="text"
+                id="note-title"
+                placeholder="Ej: Recuerdo favorito"
+              />
+              <label class="small">Mensaje</label>
+              <textarea
+                id="note-body"
+                placeholder="Escribe aquí una nota corta..."
+              ></textarea>
+              <div style="display: flex; gap: 8px; align-items: center">
+                <button class="btn" type="submit">Agregar nota</button>
+                <button class="btn ghost" type="button" id="clear-notes">
+                  Borrar todas
+                </button>
+              </div>
+            </form>
+          </aside>
+        </div>
+      </section>
+
+      <section class="card momentos-container">
+        <h3 class="section-title">Momentos</h3>
+        <div class="momentos-heart">
+          <p class="momentos-instructions">Has click en el ♥</p>
+          <button id="momentos-toggle" class="heart-btn">♥</button>
+        </div>
+        <div class="momentos-gallery" id="momentos-gallery">
+          <div class="momentos-item">
+            <img src="img/a1.jpg" alt="Momento 1" />
+            <p class="momentos-desc">El maquillaje que mas me gusta</p>
+          </div>
+          <div class="momentos-item">
+            <img src="img/2.jpg" alt="Momento 1" />
+            <p class="momentos-desc">Mi foto favorita</p>
+          </div>
+          <div class="momentos-item">
+            <img src="img/3.jpg" alt="Momento 1" />
+            <p class="momentos-desc">Mi otra foto favorita</p>
+          </div>
+          <div class="momentos-item">
+            <img src="img/5.jpg" alt="Momento 1" />
+            <p class="momentos-desc">Mi oufit favorito</p>
+          </div>
+          <div class="momentos-item">
+            <img src="img/4.jpg" alt="Momento 1" />
+            <p class="momentos-desc">Mi otro oufit favorito</p>
+          </div>
+          <div class="momentos-item">
+            <img src="img/fondo.jpg" alt="Momento 1" />
+            <p class="momentos-desc">Mi nuevo fondo de pantalla</p>
+          </div>
+          <div class="momentos-item">
+            <img src="img/7.jpg" alt="Momento 1" />
+            <p class="momentos-desc">La primera foto que me enviaste</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card you-me-container">
+        <h3 class="section-title">Tú y Yo</h3>
+        <div class="you-me-content">
+          <div class="person">
+            <img src="img/ella.jpg" alt="Yo" />
+            <p class="label">You</p>
+          </div>
+
+          <div class="and-text">AND</div>
+
+          <div class="person">
+            <img src="img/yo.jpg" alt="Ella" />
+            <p class="label">Me</p>
+          </div>
+        </div>
+
+        <p class="always-text">Always Forever 💞</p>
+      </section>
+
+      <section class="card" id="settings">
+        <h3 class="section-title">Música</h3>
+        <p class="small">
+          La música intentará reproducirse automáticamente al abrir la página.
+          Si no suena, presioná "Reproducir música" en la cabecera.
+        </p>
+      </section>
+      <br>
+      <button
+        onclick="window.location.href='pgn2.html'"
+        class="btn-velas"
+      >
+        💌 Da click aqui mi amor
+      </button>
+      <style>
+        .btn-velas {
+          background: linear-gradient(45deg, #ff7eb9, #ffb6c1);
+          color: white;
+          font-size: 1.1rem;
+          font-family: "Poppins", sans-serif;
+          border: none;
+          border-radius: 12px;
+          padding: 12px 22px;
+          cursor: pointer;
+          box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+          transition: all 0.3s ease;
+        }
+
+        .btn-velas:hover {
+          transform: scale(1.08);
+          box-shadow: 0 0 25px rgba(255, 105, 180, 0.8);
+        }
+
+        .btn-velas:active {
+          transform: scale(0.95);
+        }
+      </style>
+
+      <footer>
+        <small>Hecho por tu Gusanito que te ama mucho, solo para ti.💗</small>
+      </footer>
+    </main>
+
+    <audio id="bg-audio" src="audios/iwy.mp3" preload="auto" loop></audio>
+
+    <script>
+      const LS_STORY = "nuestra_historia_texto_v1";
+      const LS_NOTES = "nuestras_notas_v1";
+
+      const storyEl = document.getElementById("story-text");
+      const notesList = document.getElementById("notes-list");
+      const fileListEl = document.getElementById("file-list");
+      let attachedFiles = [];
+
+      function loadStory() {
+        const s = localStorage.getItem(LS_STORY);
+        if (s) storyEl.textContent = s;
+      }
+      function saveStory() {
+        localStorage.setItem(LS_STORY, storyEl.textContent);
+        alert("Historia guardada localmente.");
+      }
+
+      function loadNotes() {
+        const raw = localStorage.getItem(LS_NOTES);
+        if (!raw) return [];
+        try {
+          return JSON.parse(raw) || [];
+        } catch (e) {
+          return [];
+        }
+      }
+      function saveNotes(notes) {
+        localStorage.setItem(LS_NOTES, JSON.stringify(notes));
+      }
+
+      function renderNotes() {
+        const notes = loadNotes();
+        notesList.innerHTML = "";
+        if (notes.length === 0) {
+          notesList.innerHTML =
+            '<div class="small" style="padding:12px;color:rgba(255,255,255,0.6)">No hay notas aún.</div>';
+          return;
+        }
+        notes
+          .slice()
+          .reverse()
+          .forEach((n) => {
+            const el = document.createElement("div");
+            el.className = "note";
+            el.innerHTML = `<strong>${escapeHtml(n.title || "Nota")}</strong>
+                      <div style="margin-top:6px">${escapeHtml(n.body)}</div>
+                      <small>${new Date(n.t || 0).toLocaleString()}</small>`;
+            notesList.appendChild(el);
+          });
+      }
+
+      function escapeHtml(str) {
+        if (!str) return "";
+        return ("" + str)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;");
+      }
+
+      document.getElementById("note-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const title = document.getElementById("note-title").value.trim();
+        const body = document.getElementById("note-body").value.trim();
+        if (!body) return alert("Escribí algo en la nota.");
+        const notes = loadNotes();
+        notes.push({ title, body, t: Date.now() });
+        saveNotes(notes);
+        document.getElementById("note-title").value = "";
+        document.getElementById("note-body").value = "";
+        renderNotes();
+      });
+
+      document.getElementById("clear-notes").addEventListener("click", () => {
+        if (confirm("Borrar todas las notas?")) {
+          localStorage.removeItem(LS_NOTES);
+          renderNotes();
+        }
+      });
+
+      document
+        .getElementById("save-story")
+        .addEventListener("click", saveStory);
+
+      // Adjuntar archivos
+      const attachInput = document.getElementById("attach-file");
+      attachInput.addEventListener("change", (e) => {
+        const files = Array.from(e.target.files);
+        files.forEach((f) => {
+          attachedFiles.push(f);
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>${
+            f.name
+          }</strong> <a href="" onclick="downloadFile(event,'${
+            attachedFiles.length - 1
+          }')">Descargar</a>`;
+          fileListEl.appendChild(li);
+        });
+        attachInput.value = "";
+      });
+
+      function downloadFile(e, index) {
+        e.preventDefault();
+        const file = attachedFiles[index];
+        const url = URL.createObjectURL(file);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = file.name;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      // Música autoplay
+      const audio = document.getElementById("bg-audio");
+      const playBtn = document.getElementById("play-toggle");
+      playBtn.addEventListener("click", async () => {
+        if (audio.paused) {
+          await audio.play();
+          playBtn.textContent = "Pausar música";
+        } else {
+          audio.pause();
+          playBtn.textContent = "Reproducir música";
+        }
+      });
+      window.addEventListener("load", () => {
+        setTimeout(() => audio.play().catch(() => {}), 600);
+        loadStory();
+        renderNotes();
+      });
+
+      // Navegación rápida
+      document.getElementById("jump-story").addEventListener("click", () => {
+        document.getElementById("story").scrollIntoView({ behavior: "smooth" });
+      });
+      document.getElementById("jump-notes").addEventListener("click", () => {
+        document.getElementById("notes").scrollIntoView({ behavior: "smooth" });
+      });
+
+      const toggleHeart = document.getElementById("momentos-toggle");
+      const gallery = document.getElementById("momentos-gallery");
+
+      toggleHeart.addEventListener("click", () => {
+        gallery.style.display =
+          gallery.style.display === "flex" ? "none" : "flex";
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggleHeart = document.getElementById("momentos-toggle");
+        const gallery = document.getElementById("momentos-gallery");
+
+        toggleHeart.addEventListener("click", () => {
+          if (gallery.style.display === "flex") {
+            gallery.style.display = "none";
+          } else {
+            gallery.style.display = "flex";
+          }
+        });
+      });
+
+      toggleHeart.addEventListener("click", () => {
+        if (gallery.classList.contains("show")) {
+          gallery.classList.remove("show");
+          gallery.style.display = "none";
+        } else {
+          gallery.style.display = "flex";
+
+          // Animar cada imagen con retraso
+          const images = gallery.querySelectorAll("img");
+          images.forEach((img, i) => {
+            img.style.animationDelay = `${i * 0.1}s`;
+          });
+
+          gallery.classList.add("show");
+        }
+      });
+    </script>
+
+    <script>
+      window.addEventListener("load", () => {
+        const audio = document.getElementById("bg-audio");
+        const playBtn = document.getElementById("play-toggle");
+
+        playBtn.addEventListener("click", async () => {
+          try {
+            if (audio.paused) {
+              await audio.play();
+              playBtn.textContent = "Pausar música";
+            } else {
+              audio.pause();
+              playBtn.textContent = "Reproducir música";
+            }
+          } catch (err) {
+            console.log("No se pudo reproducir el audio automáticamente:", err);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
