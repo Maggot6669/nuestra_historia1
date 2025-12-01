@@ -470,6 +470,14 @@
       <div style="flex: 1"></div>
       <nav class="controls">
         <button class="btn" id="play-toggle">Reproducir música</button>
+        <button
+          class="btn"
+          id="perla-completa"
+          style="display: none"
+          onclick="window.location.href='perla.html'"
+        >
+          La perla de Shikon
+        </button>
       </nav>
     </header>
 
@@ -528,7 +536,100 @@
         bottom: 30%;
         right: 80px;
       }
+
+      /* Base común */
+      .perla {
+        position: absolute;
+        width: 8px;
+        height: 10px;
+        background: white;
+        cursor: pointer;
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+        /* Brillo tipo destello */
+      }
+
+      .perla::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 15px;
+        height: 15px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.9) 0%,
+          transparent 70%
+        );
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        filter: blur(2px);
+        animation: destello 1.5s infinite;
+      }
+
+      /* Animación destello */
+      @keyframes destello {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.4);
+          opacity: 0.5;
+        }
+      }
+
+      /* Fragmentos con formas únicas de líneas rectas */
+      .perla-1 {
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 90%);
+        top: 800px;
+        left: 120px;
+      }
+      .perla-2 {
+        clip-path: polygon(20% 0%, 100% 10%, 90% 100%, 0% 90%);
+        top: 500px;
+        left: 1250px;
+      }
+      .perla-3 {
+        clip-path: polygon(0% 10%, 80% 0%, 100% 80%, 10% 100%);
+        top: 1700px;
+        left: 1100px;
+      }
+      .perla-4 {
+        clip-path: polygon(10% 0%, 90% 0%, 100% 90%, 0% 80%);
+        top: 300px;
+        left: 200px;
+      }
+      .perla-5 {
+        clip-path: polygon(0% 0%, 100% 20%, 80% 100%, 20% 80%);
+        top: 2000px;
+        left: 170px;
+      }
+      .perla-6 {
+        clip-path: polygon(0% 20%, 80% 0%, 100% 90%, 10% 100%);
+        top: 2700px;
+        left: 1240px;
+      }
+
+      @keyframes destello {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.4);
+          opacity: 0.5;
+        }
+      }
     </style>
+
+    <div class="perla perla-1"></div>
+    <div class="perla perla-2"></div>
+    <div class="perla perla-3"></div>
+    <div class="perla perla-4"></div>
+    <div class="perla perla-5"></div>
+    <div class="perla perla-6"></div>
 
     <main class="container">
       <div class="hero">
@@ -630,15 +731,33 @@
           no puedo mencionar aquí alsjsajd. Te amo, mi amor. Jamás dejaré de
           hacerlo. JAMÁS. Te amo.<3
         </div>
-        <br>
+        <br />
         <div class="story-text" id="story-text">
           💖 Carta #3<br />
-          Mi amor, siento que todo esto es muy poco, en comparacion de lo que mereces,
-          apesar de eso, quiero que sepas que cada linea de codigo, cada variable,
-          cada comando, cada propiedad llevan una gran parte de todo mi amor hacia ti,
-          Te amo cariño, y hare todo lo posible para demostrartemi inmenso amor todos 
-          los dias. TE AMOOOOOO.<3
+          Mi amor, siento que todo esto es muy poco, en comparacion de lo que
+          mereces, apesar de eso, quiero que sepas que cada linea de codigo,
+          cada variable, cada comando, cada propiedad llevan una gran parte de
+          todo mi amor hacia ti, Te amo cariño, y hare todo lo posible para
+          demostrarte mi inmenso amor todos los dias. TE AMOOOOOO.<3
         </div>
+        <br />
+        <div class="story-text" id="story-text">
+          💖 Carta #4<br />
+          Este 1/12/2025 es un día especial, un día especial porque cumplimos 2
+          meses de relación. Este poco tiempo ha sido suficiente para saber que
+          quiero compartir el resto de mi vida a tu lado; para saber que tú
+          serás mi esposa; para saber que eres la mujer de mi vida. Te juro que
+          cada segundo que paso a tu lado lo valoro como no tienes idea, porque
+          esos momentos contigo son mis momentos favoritos del día. Jamás me
+          había sentido así con absolutamente nadie; jamás nadie me había hecho
+          sentir que tengo a alguien especial a mi lado. Tú me haces sentir todo
+          eso, nadie más. Espero —y estoy seguro— que compartiremos mucho más
+          tiempo juntos. Estoy seguro de que seremos una pareja feliz, y sé muy
+          bien que, si los dos ponemos de nuestra parte, podremos resolver
+          cualquier adversidad que se nos ponga enfrente, porque nada ni nadie
+          nos va a separar. Estaremos juntos por y para siempre. <br>          Te amo, mi amor<3     
+          <br>        ATT. Tu Gusanito metalero que te ama muchote.💖
+          <br>        P.D. Encuentra y da click en todos los fragmentos blancos dispersados en la pagina.        </div>
 
         <div
           style="
@@ -694,32 +813,40 @@
         </div>
         <div class="momentos-gallery" id="momentos-gallery">
           <div class="momentos-item">
-            <img src="img/a1.jpg" alt="Momento 1" />
-            <p class="momentos-desc">El maquillaje que mas me gusta</p>
+            <img src="img/a2.jpg" alt="Momento 1" />
+            <p class="momentos-desc">Maquillaje favorito</p>
           </div>
           <div class="momentos-item">
-            <img src="img/2.jpg" alt="Momento 1" />
+            <img src="img/a6.jpg" alt="Momento 1" />
             <p class="momentos-desc">Mi foto favorita</p>
           </div>
           <div class="momentos-item">
-            <img src="img/3.jpg" alt="Momento 1" />
-            <p class="momentos-desc">Mi otra foto favorita</p>
+            <img src="img/2.jpg" alt="Momento 1" />
+            <p class="momentos-desc">Mi foto favorita #2</p>
           </div>
           <div class="momentos-item">
-            <img src="img/5.jpg" alt="Momento 1" />
+            <img src="img/a7.jpg" alt="Momento 1" />
+            <p class="momentos-desc">Mi foto favorita #3</p>
+          </div>
+          <div class="momentos-item">
+            <img src="img/a8.jpg" alt="Momento 1" />
+            <p class="momentos-desc">Mi foto favorita #4</p>
+          </div>
+          <div class="momentos-item">
+            <img src="img/a5.jpg" alt="Momento 1" />
             <p class="momentos-desc">Mi oufit favorito</p>
           </div>
           <div class="momentos-item">
-            <img src="img/4.jpg" alt="Momento 1" />
-            <p class="momentos-desc">Mi otro oufit favorito</p>
+            <img src="img/a3.jpg" alt="Momento 1" />
+            <p class="momentos-desc">Mi oufit favorito #2</p>
           </div>
           <div class="momentos-item">
             <img src="img/fondo.jpg" alt="Momento 1" />
-            <p class="momentos-desc">Mi nuevo fondo de pantalla</p>
+            <p class="momentos-desc">Mi fondo de pantalla</p>
           </div>
           <div class="momentos-item">
             <img src="img/7.jpg" alt="Momento 1" />
-            <p class="momentos-desc">La primera foto que me enviaste</p>
+            <p class="momentos-desc">La primera foto</p>
           </div>
         </div>
       </section>
@@ -750,11 +877,8 @@
           Si no suena, presioná "Reproducir música" en la cabecera.
         </p>
       </section>
-      <br>
-      <button
-        onclick="window.location.href='pgn2.html'"
-        class="btn-velas"
-      >
+      <br />
+      <button onclick="window.location.href='pgn2.html'" class="btn-velas">
         💌 Da click aqui mi amor
       </button>
       <style>
@@ -982,6 +1106,51 @@
             }
           } catch (err) {
             console.log("No se pudo reproducir el audio automáticamente:", err);
+          }
+        });
+      });
+    </script>
+
+    <script>
+      const perlas = document.querySelectorAll(".perla");
+      let recolectadas = 0;
+
+      perlas.forEach((p) => {
+        p.addEventListener("click", () => {
+          // Animación de desaparición
+          p.style.transform = "scale(0)";
+          p.style.opacity = "0";
+          setTimeout(() => (p.style.display = "none"), 300); // eliminar del DOM visualmente
+
+          // Contar
+          recolectadas++;
+          if (recolectadas === perlas.length) {
+            document.getElementById("perla-completa").style.display =
+              "inline-block";
+
+            const perlas = document.querySelectorAll(".perla");
+            const perlaCountBtn = document.getElementById("perla-count");
+            const perlaCompletaBtn = document.getElementById("perla-completa");
+            let recolectadas = 0;
+
+            perlas.forEach((p) => {
+              p.addEventListener("click", () => {
+                // Animación de desaparición
+                p.style.transform = "scale(0)";
+                p.style.opacity = "0";
+                setTimeout(() => (p.style.display = "none"), 300);
+
+                // Contar fragmentos
+                recolectadas++;
+                perlaCountBtn.textContent = `Fragmentos recolectados: ${recolectadas}/6`;
+
+                // Si recolectó todas, habilitar botón
+                if (recolectadas === perlas.length) {
+                  perlaCompletaBtn.style.display = "inline-block";
+                  perlaCountBtn.disabled = true; // opcional, desactivar contador
+                }
+              });
+            });
           }
         });
       });
